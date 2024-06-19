@@ -8,12 +8,12 @@ int main(int argc, char **argv){
 
   int c;
 
-  putchar('$');
+  printf("$ ");
   
   while((c = getchar()) != EOF){
     if(c == '\n'){
       putchar(c);
-      putchar('$');
+      printf("$ ");
     }
     else{
       putchar(c);
