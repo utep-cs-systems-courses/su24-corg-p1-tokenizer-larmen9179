@@ -2,11 +2,13 @@
 #include "tokenizer.h"
 #include "history.h"
 
-#define MAXLEN 100
+#define MAXLEN 10
 
 int main(int argc, char **argv){
 
   int c;
+
+  char inputLine[MAXLEN] = {0};
 
   printf("$ ");
   
@@ -18,5 +20,17 @@ int main(int argc, char **argv){
     else{
       putchar(c);
     }
+
+    //testing space char methods
+    //printf(" %d %d\n", space_char(c), non_space_char(c));
+
+    //testing token start
+    //char *p = "Hello there";
+    //printf("%c", *(token_start(p)));
+
+    
+    
   }
+
+  
 }

@@ -24,6 +24,15 @@ int non_space_char(char c){
    str does not contain any tokens. */
 char *token_start(char *str){
 
+  while(*str != '\0' && space_char(*str)){
+    str++;
+  }
+
+  if(*str == '\0'){
+    return NULL;
+  }
+
+  return str;
   
 }
 
