@@ -24,9 +24,13 @@ int main(int argc, char **argv){
     //testing space char methods
     //printf(" %d %d\n", space_char(c), non_space_char(c));
 
-    //testing token start
-    //char *p = "Hello there";
-    //printf("%c", *(token_start(p)));
+    //testing token start and terminator
+    char *p = "Hello there everybody my name is chungus";
+    printf("%c", *(token_start(p)));
+
+    printf("%d", *(token_terminator(p)));
+
+    printf("%d", count_tokens(p));
 
     
     

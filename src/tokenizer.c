@@ -29,7 +29,7 @@ char *token_start(char *str){
   }
 
   if(*str == '\0'){
-    return NULL;
+    return 0;
   }
 
   return str;
@@ -39,21 +39,27 @@ char *token_start(char *str){
 /* Returns a pointer terminator char following *token */
 char *token_terminator(char *token){
 
-  char *p = "Hello World";
+  while(*token != '\0' && non_space_char(*token)){
+    token++;
+  }
 
-  printf("%c", *p);
-
-  p++;
-
-  printf("%c", *p);
-
-  return p;
+  return token;
+  
 }
 
 /* Counts the number of tokens in the string argument. */
 int count_tokens(char *str){
 
-  return 0;
+  int tokenCount;
+  
+  while(*str != '\0'){
+    str = token_start(str);
+    str = token_terminator(str);
+    tokenCount++;
+  }
+
+  return tokenCount;
+  
 }
 
 /* Returns a fresly allocated new zero-terminated string 
@@ -101,5 +107,5 @@ void print_tokens(char **tokens){
 
 /* Frees all tokens and the vector containing themx. */
 void free_tokens(char **tokens){
-
+  free(tokens);
 }
