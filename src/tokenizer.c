@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "tokenizer.h"
 
 
@@ -6,8 +7,9 @@
    ('\t' or ' ').  
    Zero terminators are not printable (therefore false) */
 int space_char(char c){
-
+  
   return (c == '\t' || c == ' ');
+  
 }
 
 /* Return true (non-zero) if c is a non-whitespace 
@@ -50,14 +52,15 @@ char *token_terminator(char *token){
 /* Counts the number of tokens in the string argument. */
 int count_tokens(char *str){
 
-  int tokenCount;
+  int tokenCount = 0;
   
-  while(*str != '\0'){
-    str = token_start(str);
-    str = token_terminator(str);
+  while(*str != '\0' && token_start(str) != 0){
+    str = token_terminator(token_start(str));
+    //printf("%c", *str);
+    //str = token_terminator(str);
+    //printf("%c", *str);
     tokenCount++;
   }
-
   return tokenCount;
   
 }
@@ -66,15 +69,24 @@ int count_tokens(char *str){
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
 
-  char *p = "Hello World";
+  char *str = malloc(len + 1 * sizeof(char));
+  char *strp = str;
 
-  printf("%c", *p);
+  //iterates over the length of the string
+  //updating the malloced values
+  for(int i = 0;i < len;i++){
+    *strp++ = *inStr++;
+  }
 
-  p++;
+  strp++;
+  *strp = 0;
 
-  printf("%c", *p);
+  //testing the old pointer to see if it now points to new characters
+  for(int i = 0;i < len;i++){
+    printf("%c", *str);
+  }
 
-  return p;
+  return str;
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 
@@ -107,5 +119,16 @@ void print_tokens(char **tokens){
 
 /* Frees all tokens and the vector containing themx. */
 void free_tokens(char **tokens){
+  //have to free all the pointers before the poniter to pointero
   free(tokens);
+}
+
+int string_length(char *str){
+
+  char *p = str;
+
+  p = token_terminator(p);
+
+  return p - str;
+  
 }
