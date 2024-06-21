@@ -43,6 +43,7 @@ static char *test_find_word_terminator() {
     return 0;
 }
 
+
 static char *test_count_words() {
     char *str = "happy happy joy joy";
     mu_assert("count_words('happy happy joy joy') == 4", count_words(str) == 4);
