@@ -34,6 +34,6 @@ int main(int argc, char **argv){
     printf("%d\n", count_tokens(p));
 
     printf("%d\n", string_length("snickerdoodle"));
-  copy_string(p, string_length(p*)):
+    copy_str(p, string_length(p));
   }  
 }

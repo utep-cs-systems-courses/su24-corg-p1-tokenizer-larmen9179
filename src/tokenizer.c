@@ -84,6 +84,7 @@ char *copy_str(char *inStr, short len){
   //testing the old pointer to see if it now points to new characters
   for(int i = 0;i < len;i++){
     printf("%c", *str);
+    str++;
   }
 
   return str;
