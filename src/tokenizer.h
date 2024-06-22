@@ -46,4 +46,6 @@ void free_tokens(char **tokens);
 
 int string_length(char *str);
 
+int string_length_full(char *str);
+
 #endif

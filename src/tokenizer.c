@@ -81,13 +81,6 @@ char *copy_str(char *inStr, short len){
   strp++;
   *strp = 0;
 
-  //testing the old pointer to see if it now points to new characters
-  for(int i = 0;i < len;i++){
-    printf("%c", *str);
-    str++;
-  }
-
-  return str;
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 
@@ -96,7 +89,7 @@ char *copy_str(char *inStr, short len){
    For example, tokenize("hello world string") would result in:
      tokens[0] = "hello"
      tokens[1] = "world"
-     tokens[2] = "string" 
+     tokens[2] = "string"
      tokens[3] = 0
 */
 char **tokenize(char* str){
@@ -120,7 +113,7 @@ void print_tokens(char **tokens){
 
 /* Frees all tokens and the vector containing themx. */
 void free_tokens(char **tokens){
-  //have to free all the pointers before the poniter to pointero
+  //have to free all the pointers before the pointer to pointer
   free(tokens);
 }
 
@@ -132,4 +125,15 @@ int string_length(char *str){
 
   return p - str;
   
+}
+
+int string_length_full(char *str){
+
+  int count = 0;
+  
+  while(*str++ != 0){
+    count++;
+  }
+
+  return count;
 }

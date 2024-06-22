@@ -61,6 +61,7 @@ static char *test_tokenize() {
     return 0;
 }
 
+
 /* History test cases */
 static char *test_add_history() {
     List* list = init_history();
