@@ -1,15 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "history.h"
 
 /* Initialize the linked list to keep the history. */
-List* init_history();
+List* init_history(){
+  List *headPtr = malloc(sizeof(List));
+
+  headPtr->head = 0;
+
+  return headPtr;
+}
 
 /* Add a history item to the end of the list.
    List* list - the linked list
    char* str - the string to store
 */
-void add_history(List *list, char *str);
+void add_history(List *list, char *str){
 
+  if(list->head == 0){
+    Item *newNode = malloc(sizeof(Item));
+    newNode->id = 0;
+    newNode->str = str;
+    newNode->next = 0;
+    list->head = newNode;
+  }
+ 
+}
+  
 /* Retrieve the string stored in the node where Item->id == id.
    List* list - the linked list
    int id - the id of the Item to find */

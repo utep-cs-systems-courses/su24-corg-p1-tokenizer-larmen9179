@@ -78,7 +78,6 @@ char *copy_str(char *inStr, short len){
     *strp++ = *inStr++;
   }
 
-  strp++;
   *strp = 0;
 
   return str;

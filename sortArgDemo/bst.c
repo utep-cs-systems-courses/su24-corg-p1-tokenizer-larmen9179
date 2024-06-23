@@ -21,8 +21,6 @@ int bstStrlen(char *s)
   return sc - s;
 }
 
-
-
 void
 bstInsert(BstNode **rootp, char *str) 
 {
