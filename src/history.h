@@ -2,7 +2,6 @@
 #define _HISTORY_
 
 typedef struct s_Item {
-  int id;
   char *str;
   struct s_Item *next;
 } Item;

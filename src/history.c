@@ -19,14 +19,21 @@ void add_history(List *list, char *str){
 
   if(list->head == 0){
     Item *newNode = malloc(sizeof(Item));
-    newNode->id = 0;
     newNode->str = str;
     newNode->next = 0;
     list->head = newNode;
   }
   else{
     Item *currItem = list->head;
-    printf("%s", currItem->str);
+
+    while(currItem != 0){
+      //testing the contents of each node
+      printf("%s", currItem->str);
+      currItem = currItem->next;
+    }
+    Item *newNode = malloc(sizeof(Item));
+    newNode->str = str;
+    newNode->next = 0;
   }
 }
   

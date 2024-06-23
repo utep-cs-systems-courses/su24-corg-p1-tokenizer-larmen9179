@@ -53,7 +53,7 @@ int main(int argc, char **argv){
 
       add_history(headPtr, "fart");
 
-      printf("%s\n", headPtr->head->str);
+      //printf("%s\n", headPtr->head->str);
 	
      break;
     case 'h':
