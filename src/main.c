@@ -3,56 +3,68 @@
 #include "tokenizer.h"
 #include "history.h"
 
-#define MAXLEN 50
+#define MAXLEN 100
 
 int main(int argc, char **argv){
 
-  char inputLine[MAXLEN];
-
-  int c = 0;
+  char input[MAXLEN];
 
  firstInput:
-  while(c != EOF){
+  while(1){
 
     printf("Type your option...\n");
-    printf("t = tokenizer, q = quit\n");
-
+    printf("t = tokenizer, h = history, q = quit\n");
     printf("$ ");
-    c = getchar();
+   
+    char *inputcheck = fgets(input, MAXLEN, stdin);
+    
+    char *p = input;
 
-    //skipping newline for input options
-    getchar();
+    //removing newline from input
+    while(*p != '\0'){
+      if(*p == '\n'){
+	*p = '\0';
+	break;
+      }
+      p++;
+    }
 
-    switch(c){
+    switch(input[0]){
     case 'q':
       printf("Quitting...\n");
       goto done;
       break;
     case 't':
       //testing tokenizer methods
+      char *p = " Smelly fart big smelly fart stuff piss";
+
+      char **tokens = tokenize(p);
+
+      print_tokens(tokens);
+
+      free_tokens(tokens);
 	
-      //printf(" %d %d\n", space_char(c), non_space_char(c));
-	
-      char *p = "Hello there";
-
-      printf("%c\n", *(token_start(p)));
-
-      printf("%d\n", *(token_terminator(p)));
-
-      printf("%d\n", count_tokens(p));
-
-      printf("%d\n", string_length("snickerdoodle"));
-    
-      copy_str(p, string_length(p));
-
-      printf("%d\n", string_length_full(p));
-	
+     break;
+    case 'h':
+      goto history;
       break;
-	
+    case '\0':
+      goto firstInput;
+      break;
+    default:
+      printf("That input isn't recognized... Try again\n");
+      break;
     }
-    
-    
+  
   }
+ history:
+  printf("history implemenation goes here >\n");
+  
+  printf("Type your option for the history menu:\n");
+  printf("! - Lists complete history\n");
+  printf("!<number> - Lists a unique history item\n");
+  printf("m - Go back to the main menu\n");
+  printf("q - Quit\n");
 
  done:
   exit(0);

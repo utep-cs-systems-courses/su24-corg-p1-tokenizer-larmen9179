@@ -69,7 +69,7 @@ int count_tokens(char *str){
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
 
-  char *str = malloc(len + 1 * sizeof(char));
+  char *str = malloc((len + 1) * sizeof(char));
   char *strp = str;
 
   //iterates over the length of the string
@@ -80,6 +80,8 @@ char *copy_str(char *inStr, short len){
 
   strp++;
   *strp = 0;
+
+  return str;
 
 }
 
@@ -94,26 +96,64 @@ char *copy_str(char *inStr, short len){
 */
 char **tokenize(char* str){
 
-  char *p;
-  char **pp = &p;
+  //finding out how many tokens we need to malloc
+  int numTokens = count_tokens(str);
 
-  p = "hello world";
+  //pointing a pp to the allocated memory of char pointers
+  char **tokenFinal = malloc((numTokens + 1) * sizeof(char *));
 
-  printf("%s", *pp);
+  char **tokenPtr = tokenFinal;
+  
+  for(int i = 0;i < numTokens;i++){
+    //find the start of the next token
+    str = token_start(str);
+    
+    //find that tokens length
+    int length = string_length(str);
 
-  return pp;
+    //copy the token
+    char *copyPtr = copy_str(str, length);
 
+    //assign the current index in the pp to the pointer copy we just made
+    tokenPtr[i] =  copyPtr;
+
+    //find the terminator of the current token
+    //this way we can find the next token if there is one
+    str = token_terminator(str);
+  }
+
+  //set the last index to zero terminator
+  tokenPtr[numTokens] = 0;
+  
+  return tokenFinal;
   
 }
 
 /* Prints all tokens. */
 void print_tokens(char **tokens){
 
+  int i = 0;
+  
+  while(tokens[i] != 0){
+    printf("tokens[%d] = %s\n", i, tokens[i]);
+    i++;
+  }
 }
 
-/* Frees all tokens and the vector containing themx. */
+/* Frees all tokens and the vector containing them. */
 void free_tokens(char **tokens){
   //have to free all the pointers before the pointer to pointer
+  int i = 0;
+
+  //freeing all the pointers
+  while(tokens[i] != 0){
+    free(tokens[i]);
+    i++;
+  }
+
+  //freeing the null terminated space
+  free(tokens[i]);
+  //freeing the vector
   free(tokens);
 }
 
