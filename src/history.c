@@ -24,7 +24,10 @@ void add_history(List *list, char *str){
     newNode->next = 0;
     list->head = newNode;
   }
- 
+  else{
+    Item *currItem = list->head;
+    printf("%s", currItem->str);
+  }
 }
   
 /* Retrieve the string stored in the node where Item->id == id.
