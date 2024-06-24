@@ -132,6 +132,9 @@ char **tokenize(char* str){
 void print_tokens(char **tokens){
 
   int i = 0;
+
+  putchar('\n');
+  printf("Printing tokens...\n");
   
   while(tokens[i] != 0){
     printf("tokens[%d] = %s\n", i, tokens[i]);

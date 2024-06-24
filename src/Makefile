@@ -22,3 +22,6 @@ clean:
 
 run:tokenizer
 	./tokenizer
+
+runTest:test
+	./test

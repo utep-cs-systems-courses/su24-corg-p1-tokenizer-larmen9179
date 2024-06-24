@@ -66,9 +66,9 @@ static char *test_tokenize() {
 static char *test_add_history() {
     List* list = init_history();
     add_history(list, "happy");
-    mu_assert("add_history(list, 'happy')", strcmp(list->root->str, "happy") == 0);
+    mu_assert("add_history(list, 'happy')", strcmp(list->head->str, "happy") == 0);
     add_history(list, "joy");
-    mu_assert("add_history(list, 'joy')", strcmp(list->root->next->str, "joy") == 0);
+    mu_assert("add_history(list, 'joy')", strcmp(list->head->next->str, "joy") == 0);
     return 0;
 }
 
@@ -87,14 +87,14 @@ static char *all_tests() {
         mu_run_test(test_find_word_start);
         mu_run_test(test_find_word_terminator);
         mu_run_test(test_count_words);
-	// mu_run_test(test_tokenize);
+	mu_run_test(test_tokenize);
     }
 
-    /*if (TEST_HISTORY) {
+    if (TEST_HISTORY) {
         mu_run_test(test_add_history);
-        mu_run_test(test_get_history);
+	mu_run_test(test_get_history);
     }
-    */
+    
 
     return 0;
 }
